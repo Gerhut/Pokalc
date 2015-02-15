@@ -3,21 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Pocalc</title>
+  <title>Pokalc</title>
   <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.min.css">
 </head>
-<body>
+<body ng-cloak>
   <ion-side-menus>
     <ion-side-menu side="left">
-      <ion-list>
-        <ion-item></ion-item>
-      </ion-list>
+      <ion-content>
+        <ion-list ng-controller="ModulesController as modules">
+          <ion-item
+            ng-repeat="(id, module) in modules"
+            ui-sref="{{::id}}"
+            menu-close
+          >{{::module.label}}</ion-item>
+        </ion-list>
+      </ion-content>
     </ion-side-menu>
     <ion-side-menu-content>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Pokalc</h1>
-      </ion-header-bar>
-      <ion-content></ion-content>
+      <ion-nav-bar class="bar-positive"></ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
     </ion-side-menu-content>
   </ion-side-menus>
   <!-- Here comes JavsScript -->
@@ -30,11 +34,12 @@
 
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-  <script src="bower_components/ionic/release/js/ionic.js"></script>
-  <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+  <script src="bower_components/ionic/release/js/ionic.min.js"></script>
+  <script src="bower_components/ionic/release/js/ionic-angular.min.js"></script>
   
   <script src="bower_components/firebase/firebase.js"></script>
   <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
   <script src="pokalc.js"></script>
+  <script src="pokalc.modules.js"></script>
 </body>
 </html>
